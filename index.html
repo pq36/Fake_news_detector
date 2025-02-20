@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 style="width: 100%;padding: 5%;">Fake News Predictor</h1>
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle">
+                <span class="slider round"></span>
+            </label>
+        </header>
+
+        <h2>Check if news is real or fake!</h2>
+
+        <form action="/predict" method="post">
+            <textarea name="text" rows="5" placeholder="Enter the news here..."></textarea>
+            <button type="submit" class="predict-btn">Predict</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result-box">
+            <h3 class="{% if prediction == 'fake' %}fake-text{% else %}true-text{% endif %}">
+                Prediction: {{ prediction|capitalize }}
+            </h3>
+        </div>
+        {% endif %}
+
+        <footer>
+            <p>Give us feedback if we predicted it wrong 😊</p>
+            <button class="feedback-btn real" onclick="submitFeedback('real')">Real</button>
+            <button class="feedback-btn fake" onclick="submitFeedback('fake')">Fake</button>
+        
+            <!-- Thank You Message -->
+            <p id="thank-you-message" style="display: none; font-weight: bold; color: green;">Thank you for your feedback! Redirecting...</p>
+        </footer>
+        
+    </div>
+
+    <script>
+        // Dark Mode Toggle
+        const toggle = document.getElementById('dark-mode-toggle');
+        toggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+        function submitFeedback(feedback) {
+                // Show thank you message
+                document.getElementById('thank-you-message').style.display = 'block';
+        
+                // Wait for 2 seconds and redirect to home page
+                setTimeout(() => {
+                    window.location.href = "/";
+                }, 2000);
+            }
+    </script>
+</body>
+</html>
