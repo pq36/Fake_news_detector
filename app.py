@@ -2,6 +2,28 @@ import pickle
 from flask import Flask, request, jsonify, render_template
 import lime
 import lime.lime_text
+import requests
+from bs4 import BeautifulSoup
+
+def get_website_text(url):
+    """Scrapes the main content text from the given website URL."""
+    try:
+        headers = {'User-Agent': 'Mozilla/5.0'}
+        response = requests.get(url, headers=headers, timeout=10)
+        
+        if response.status_code != 200:
+            return None
+
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        # Extracting all paragraph and heading tags (common content locations)
+        text = " ".join([p.get_text() for p in soup.find_all(["p", "h1", "h2", "h3"])])
+        
+        return text if text else None
+
+    except Exception as e:
+        return None
+
 
 # Load the trained model
 with open("model.pkl", "rb") as f:
@@ -28,6 +50,20 @@ def predict():
     prediction = model.predict([text])[0]
     
     return render_template("index.html", text=text, prediction=prediction)
+
+@app.route("/predict-url", methods=["POST"])
+def predict_fake_news():
+    url = request.form.get("url")  
+    if not url:
+        return jsonify({"error": "URL is required"}), 400
+
+    # Scrape text from the website
+    text = get_website_text(url)
+
+    prediction = model.predict([text])[0]
+    
+    return render_template("index.html", text=text, prediction=prediction)
+
 
 # API for explaining the prediction
 @app.route("/explain", methods=["POST"])
