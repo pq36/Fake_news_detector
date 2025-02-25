@@ -5,81 +5,94 @@ A web application that utilizes machine learning to detect fake news articles.
 ## Features
 
 - **User Input**: Submit news articles for analysis.
-- **Prediction Display**: View results indicating whether the news is "Fake" or "True".
-- **Interactive Interface**: User-friendly design for seamless interaction.
+- **Real-time Prediction**: Get instant results indicating whether the news is "Fake" or "True".
+- **User-Friendly Interface**: Interactive and easy-to-use web design.
+- **Docker Support**: Deploy the application seamlessly using Docker.
+- **Machine Learning Model**: Uses a pre-trained model to detect fake news.
 
 ## Installation
 
-1. **Clone the Repository**:
+### **1. Clone the Repository**
 
-   ```bash
-   git clone https://github.com/pq36/Fake_news_detector.git
-   cd Fake_news_detector
-   ```
+```bash
+git clone https://github.com/pq36/Fake_news_detector.git
+cd Fake_news_detector
+```
 
-2. **Set Up a Virtual Environment** (optional but recommended):
+### **2. Set Up a Virtual Environment** *(optional but recommended)*
 
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-   ```
+```bash
+python3 -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+```
 
-3. **Install Dependencies**:
+### **3. Install Dependencies**
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+pip install -r requirements.txt
+```
 
 ## Usage
 
-1. **Run the Application**:
+### **Run the Application Locally**
 
-   ```bash
-   python app.py
-   ```
+```bash
+python app.py
+```
 
-2. **Access the Web Interface**:
+### **Access the Web Interface**
 
-   Open your browser and navigate to `http://127.0.0.1:5000/`.
+Open your browser and navigate to:\
+👉 **[http://127.0.0.1:8080/](http://127.0.0.1:8080/)**
 
-3. **Submit an Article**:
+### **Submit an Article for Analysis**
 
-   - Paste the news article text into the provided text area.
-   - Click the "Check News" button to analyze.
+1. Paste the news article text into the provided text area.
+2. Click the **"Check News"** button to analyze.
 
-4. **View Results**:
+### **View Results**
 
-   The application will display whether the submitted news is "Fake" or "True".
+- The application will display whether the submitted news is **"Fake"** or **"True"**.
 
 ## Docker Deployment
 
 To deploy the application using Docker:
 
-1. **Build the Docker Image**:
+### **1. Build the Docker Image**
 
-   ```bash
-   docker build -t fake_news_detector .
-   ```
+```bash
+docker build -t fake_news_detector .
+```
 
-2. **Run the Docker Container**:
+### **2. Run the Docker Container**
 
-   ```bash
-   docker run -p 5000:5000 fake_news_detector
-   ```
-
-   The application will be accessible at `http://127.0.0.1:5000/`.
+```bash
+docker run -d -p 8080:80 --name flask-container fake_news_detector
+```
 
 ## Project Structure
 
-- `app.py`: Main Flask application.
-- `model.pkl`: Pre-trained machine learning model for fake news detection.
-- `requirements.txt`: List of Python dependencies.
-- `Dockerfile`: Instructions to build the Docker image.
-- `templates/`: HTML templates for the web interface.
-- `static/`: Static files (CSS, JavaScript, images).
+```
+Fake_news_detector/
+│-- app.py               # Main Flask application
+│-- model.pkl            # Pre-trained ML model for fake news detection
+│-- requirements.txt     # List of dependencies
+│-- Dockerfile          # Docker build instructions
+│-- templates/          # HTML templates for UI
+│-- static/             # Static files (CSS, JS, images)
+```
 
 ## Contributing
 
-Contributions are welcome! Please fork the repository and submit a pull request.
+Contributions are welcome! If you'd like to improve this project:
+
+1. Fork the repository.
+2. Create a new branch.
+3. Make your changes and submit a pull request.
+
+For any questions or suggestions, feel free to open an issue.
 
 ---
+
+🚀 **Happy Coding!**
+
