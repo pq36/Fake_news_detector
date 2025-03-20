@@ -1,0 +1,13 @@
+Flask
+gunicorn
+numpy
+scikit-learn
+pandas
+nltk
+pickle-mixin
+lime
+requests
+bs4
+pytest 
+requests-mock 
+flask-testing
