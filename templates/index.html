@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <header>
-            <h1 style="width: 100%;padding: 5%;">Fake News Predictor</h1>
+            <h1 style="width: 100%;padding: 3%;">Fake News Predictor</h1>
             <label class="switch">
                 <input type="checkbox" id="dark-mode-toggle">
                 <span class="slider round"></span>
@@ -20,6 +20,10 @@
 
         <form action="/predict" method="post">
             <textarea name="text" rows="5" placeholder="Enter the news here..."></textarea>
+            <button type="submit" class="predict-btn">Predict</button>
+        </form>
+        <form action="/predict-url" method="post" style="margin-top: 3px;">
+            <textarea name="url" rows="1" placeholder="Enter the url here..."></textarea>
             <button type="submit" class="predict-btn">Predict</button>
         </form>
 

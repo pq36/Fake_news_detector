@@ -1,0 +1,14 @@
+services:
+  flask:
+    build: .  # Ensure this path is correct
+    container_name: flask_app
+    expose:
+      - "5000"
+
+  nginx:
+    build: "./nginx"  # Ensure this path is correct
+    container_name: nginx_proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - flask
